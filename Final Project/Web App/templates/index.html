@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Stroke Predictor</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="../static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+	<div class="container-contact100">
+		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Stroke Prediction
+				</span>
+
+				<span class="contact100-form-title-2">
+					This is to predict if you're gonna get stroke or not
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" action="/predict" method="GET">
+				<div class="wrap-input1001">
+					<span class="label-input100">Gender:</span>
+					<select name="gender" id="gender">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					  </select>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Age is required">
+					<span class="label-input100">Age:</span>
+					<input class="input100" type="number" name="age" placeholder="Enter your age" min=1>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Value is required">
+					<span class="label-input100">Average glucose level:</span>
+					<input class="input100" type="number" name="agl" placeholder="Enter your avg glucose level" step="0.001">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="BMI is required">
+					<span class="label-input100">BMI:</span>
+					<input class="input100" type="number" name="bmi" placeholder="Enter your BMI" step="0.00001">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input1001">
+					<span class="label-input100">Hypertension:</span>
+					<select class = "label-input1001" name="Hypertension" id="Hypertension">
+						<option value="No">No</option>
+						<option value="Yes">Yes</option>
+						
+					</select>
+				</div>
+
+				<div class="wrap-input1001">
+					<span class="label-input100">Heart disease:</span>
+					<select class = "label-input1001" name="Heart disease" id="Heart disease" >
+						<option value="No">No</option>
+						<option value="Yes">Yes</option>
+						
+					</select>
+				</div>
+
+				<div class="wrap-input1001">
+					<span class="label-input100">Married:</span>
+					<select class = "label-input1001" name="Married" id="Married">
+						<option value="No">No</option>
+						<option value="Yes">Yes</option>
+						
+					</select>
+				</div>
+
+				<div class="wrap-input1001">
+					<span class="label-input100">Work Type:</span>
+					<select class = "label-input1001" name="Work Type" id="Work Type">
+						<option value="Private">Private</option>
+						<option value="Self-Employed">Self-Employed</option>
+						<option value="Children">Children</option>
+						<option value="Governmental Job">Governmental Job</option>
+						<option value="Never-Worked">Never-Worked</option>
+						
+					</select>
+				</div>
+
+				<div class="wrap-input1001">
+					<span class="label-input100">Residence Type:</span>
+					<select class = "label-input1001" name="Residence Type" id="Residence Type">
+						<option value="Urban">Urban</option>
+						<option value="Rural">Rural</option>
+						
+					</select>
+				</div>
+
+				
+
+				<div class="wrap-input1001">
+					<span class="label-input100">Smoking:</span>
+					<select class = "label-input1001" name="Smoking" id="Smoking">
+						<option value="Formerly Smoked">Formerly Smoked</option>
+						<option value="Never Smoked">Never Smoked</option>
+						<option value="Smokes">Smokes</option>
+						<option value="Unknown">Unknown</option>
+					</select>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn" type="submit">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+					
+					
+				</div>
+				{% if stroke == 0%}
+				<p class="Prediction">You're 94% to not have stroke but refer to a doctor</p>
+
+				{% else %}
+				<p class="Prediction">You're 94% to have stroke, please check a doctor as soon as possible</p>
+				{% endif %}
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<script src="../static/vendor/bootstrap/js/popper.js"></script>
+	<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+
+	<script src="../static/js/main.js"></script>
+
+
+</body>
+</html>
