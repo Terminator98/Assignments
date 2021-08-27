@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import random
 import pandas as pd
+import numpy as np
 
 df = pd.read_csv('kc_house_data.csv')
 model = joblib.load('model.h5')
@@ -85,7 +86,7 @@ if pred :
     if (bathrooms == 0 or area_living == 0  or floor == 0):
         st.write("Please enter the missing values")
     else:
-        input_data = [data]
+        input_data = np.array([data])
         result = model.predict(input_data)[0]
         st.write(f"Predicted price is {round(result,2)}")
 
