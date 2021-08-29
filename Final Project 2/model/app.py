@@ -83,11 +83,11 @@ data = [bedrooms_con,bathrooms,area_living,floors,
 dec.index(waterfront), view, cond_opt.index(cond), grade, base]
 
 if pred :
-    if (bathrooms == 0 or area_living == 0  or floor == 0):
+    if (bathrooms == 0 or area_living == 0  or floors == 0):
         st.write("Please enter the missing values")
     else:
-        input_data = np.array([data])
-        result = model.predict(input_data)[0]
+        data = scaler.transform([data])
+        result = model.predict(data)[0]
         st.write(f"Predicted price is {round(result,2)}")
 
 
